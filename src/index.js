@@ -1,11 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -15,15 +14,18 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-    if (err) throw err;
-    console.log('Conexion a base de datos');
+    if (err) {
+        console.error('SI LEES ESTO DEDICATE AL FRONTEND XD', err);
+        process.exit(1);
+    }
+    console.log('Conexión a base de datos');
 });
 
 app.use('/auth', authRoutes);
 app.use('/tasks', taskRoutes);
 
 app.listen(3000, () => {
-    console.log('Esto corre hijo');
+    console.log('SI PUEDES LEER ESTO, ES PORQUE FUNCIONA');
 });
 
 module.exports = db;

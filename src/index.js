@@ -16,14 +16,14 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) throw err;
-    console.log('Connected to database');
+    console.log('Conexion a base de datos');
 });
 
 app.use('/auth', authRoutes);
 app.use('/tasks', taskRoutes);
 
 app.listen(3000, () => {
-    console.log('Server running on port 3000');
+    console.log('Esto corre hijo');
 });
 
 module.exports = db;
